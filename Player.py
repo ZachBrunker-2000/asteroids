@@ -9,6 +9,7 @@ class Player(CircleShape):
         super().__init__(x,y,PLAYER_RADIUS)
         self.rotation = 0
         self.timer = 0
+        self.lives = 3
         
         
     # in the player class
@@ -57,8 +58,7 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             self.move(-dt)
             
-        if keys[pygame.K_SPACE]:
-            self.shoot()
+       
             
     
         
