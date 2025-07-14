@@ -1,1 +1,1 @@
-# astroids
+# asteroids
