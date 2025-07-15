@@ -6,6 +6,7 @@ from constants import *
 from Player import *
 from asteroid import *
 from asteroidfield import *
+from score_api import submit_score
 
 def size_score(asteroid):
     if asteroid.radius <= ASTEROID_MIN_RADIUS:
@@ -70,6 +71,7 @@ def main():
                     player.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
                 else:
                     print("Game Over!")
+                    submit_score("player",score)
                     return
         
         for object in asteroids:
