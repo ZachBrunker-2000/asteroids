@@ -6,7 +6,7 @@ from constants import *
 from Player import *
 from asteroid import *
 from asteroidfield import *
-from score_api import submit_score
+from score_api import submit_score, get_high_scores
 
 def size_score(asteroid):
     if asteroid.radius <= ASTEROID_MIN_RADIUS:
@@ -74,11 +74,11 @@ def main():
                     submit_score("player",score)
                     return
         
-        for object in asteroids:
+        for obj in asteroids:
             for bullet in shots:
-                if object.check_collision(bullet):
-                    score += size_score(object)
-                    object.split()
+                if obj.check_collision(bullet):
+                    score += size_score(obj)
+                    obj.split()
                     bullet.kill()
         
         for draw in drawable:

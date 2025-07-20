@@ -1,13 +1,22 @@
 import json
 import urllib.request
 
-API_URL = database
+API_URL = "https://asteroids-backend.onrender.com"
 
-def submit_score(name,score):
-    data = json.dumps({"name":name,"score":score}).encode("utf-8")
-    req = urllib.request.Request(f"{API_URL}/submit-score", data = data, headers={'content-type':'application/json'})
-    urllib.request.urlopen(req)
-    
+def submit_score(name, score):
+    try:
+        data = json.dumps({"name": name, "score": score}).encode("utf-8")
+        req = urllib.request.Request(f"{API_URL}/submit-score", data=data, headers={'Content-Type': 'application/json'})
+        urllib.request.urlopen(req)
+        print("Score submitted.")
+    except Exception as e:
+        print("Failed to submit score:", e)
+
 def get_high_scores():
-    with urllib.request.urlopen(f"{API_URL}/high-scores") as response:
-        return json.loads(response.read())
+    try:
+        with urllib.request.urlopen(f"{API_URL}/high-scores") as response:
+            scores = json.loads(response.read())
+            return scores
+    except Exception as e:
+        print("Failed to fetch scores:", e)
+        return []
