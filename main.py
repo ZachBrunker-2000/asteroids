@@ -2,6 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import asyncio
 from constants import *
 from Player import *
 from asteroid import *
@@ -16,7 +17,7 @@ def size_score(asteroid):
     else:
         return LARGE_ASTEROID_POINTS
 
-def main():
+async def main():
     pygame.init()
     clock = pygame.time.Clock()
     
@@ -89,7 +90,8 @@ def main():
         clock.tick(60)
         dt = clock.tick(60)/1000
         pygame.display.flip()
+        await asyncio.sleep(0)
         
         
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
