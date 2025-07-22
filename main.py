@@ -49,6 +49,9 @@ async def main():
             if event.type == pygame.QUIT:
                 return
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     player.shoot()
             
