@@ -8,7 +8,6 @@ def submit_score(name, score):
         data = json.dumps({"name": name, "score": score}).encode("utf-8")
         req = urllib.request.Request(f"{API_URL}/submit-score", data=data, headers={'Content-Type': 'application/json'})
         urllib.request.urlopen(req)
-        print("score submitted")
         return True
     except Exception as e:
         return False

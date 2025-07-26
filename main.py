@@ -34,6 +34,7 @@ async def main():
     cursor_visible = True
     max_chars = 4
     active = True
+    success = False
     
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -136,7 +137,7 @@ async def main():
         while state == 'GAME_OVER':
             ct = clock.tick(30)
             cursor_timer += ct
-            success = False
+            
             
             if cursor_timer >= cursor_blink_interval:
                 cursor_visible = not cursor_visible
@@ -148,7 +149,7 @@ async def main():
                     return                
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN and input_text:
-                        sumbit_result = submit_score(input_text,score)
+                        success = submit_score(input_text,score)
                     elif event.key == pygame.K_BACKSPACE:
                         input_text = input_text[:-1]
                     elif len(input_text) < max_chars and event.unicode.isprintable():
@@ -164,7 +165,7 @@ async def main():
             prompt_text = "Please enter your initials:"
             display_text = input_text.upper() + ('_' if cursor_visible else '')
             submit_text = ("Press enter to submit your score" if not success else "Score Submitted!")
-            esc_text = "press esc to cancel"            
+            esc_text = "press esc to restart"            
         
             game_over_surface = title_font.render(game_over_text,True,'white')
             score_surface = font.render(score_text, True, 'white')
