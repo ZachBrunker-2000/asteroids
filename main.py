@@ -80,6 +80,7 @@ async def main():
             screen.blit(quit_surface,quit_rect)
         
             pygame.display.flip()
+            await asyncio.sleep(0)
         
         while state == 'PLAYING':            
             
@@ -132,7 +133,7 @@ async def main():
             clock.tick(60)
             dt = clock.tick(60)/1000
             pygame.display.flip()
-            
+            await asyncio.sleep(0)
         
         while state == 'GAME_OVER':
             ct = clock.tick(30)
@@ -157,6 +158,7 @@ async def main():
                     elif event.key == pygame.K_ESCAPE:
                         state = 'MENU'
                         input_text = ''
+                        score = 0
                 
             screen.fill((0,0,0))
         
@@ -191,9 +193,10 @@ async def main():
             screen.blit(esc_surface,esc_rect)
             
             pygame.display.flip()
+            await asyncio.sleep(0)
+    
+    await asyncio.sleep(0)
         
-            
         
-        await asyncio.sleep(0)
 if __name__ == "__main__":
     asyncio.run(main())
